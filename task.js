@@ -4,7 +4,9 @@
  * @body 具体的任务
  */
 async function task(workParam) {
-  // console.log(workParam)
+  let start = Date.now()
+  while (Date.now() < start + 50) {}
+  console.log(workParam)
 }
 
 /**
@@ -18,7 +20,6 @@ async function firstTask() {
  * 完成任务后，像线程池传递信息
  */
 async function finishTask() {
-  console.log('已完成')
   await process.send('finish')
 }
 
@@ -29,14 +30,17 @@ async function unFinishTask() {
  * 监听后续线程池指派的任务
  */
 process.on('message', async m => {
-  console.log('收到来自主进程的消息', m)
   await task(m)
-  await finishTask()
+  try {
+    await finishTask()
+  } catch (e) {
+    await unFinishTask()
+  }
 })
 setImmediate(async () => {
   try {
     await firstTask()
-    await unFinishTask()
+    await finishTask()
   } catch (e) {
     await unFinishTask()
   }
