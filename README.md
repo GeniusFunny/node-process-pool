@@ -34,23 +34,81 @@ Since the master process is responsible for the IPC and constantly monitors the 
 
 ```javascript
 const ProcessItem = require('./ProcessItem')
+const fs = require('fs')
 /**
- * 进程池类 Process Pool
+ * 进程池类
  * @param maxParallelProcess，最大并行工作进程数
  * @param timeToClose，任务最长耗时时间
- * @param task，任务脚本
  * @param taskParams，所有任务脚本需要的参数
- * Todo: 读写统一文件时出现任务丢失，待修复bug
+ * @param dependency，任务脚本所需依赖
+ * @param taskName, 工作脚本名称
+ * @param script 脚本内容
+ * @param workDir 工作目录
+ * Todo: 读写同一文件时出现任务丢失，待修复bug，传入的script的参数如果有路径需要做一个替换
+ * Todo: 脚本内容现在是直接加到task.js尾部，虽然后面的会覆盖前面的，但是这也太hack了，写个插件？类似webpack-html-plugin
  */
-function ProcessPool({ maxParallelProcess = 50, timeToClose = 60 * 1000, task = '', taskParams = [] }) {
+function ProcessPool({
+    maxParallelProcess = 50,
+    timeToClose = 60 * 1000,
+    taskParams = [],
+    dependency = '',
+    workDir ='',
+    taskName = '',
+    script = '',}) {
   this.processList = new Map() // 使用Map存储进程对象
   this.currentProcessNum = 0 // 当前活动进程数
   // this.timeToClose = timeToClose
-  this.task = task // 任务脚本路径
+  if (typeof script !== 'function' && script.name === 'task') {
+    throw new Error('script must be a async function that named task')
+  }
+  this.dependency = dependency
+  this.workDir = workDir
+  this.taskName = taskName
+  this.task = `${this.workDir}/${this.taskName}.js`// 任务脚本路径
   this.taskParamsTodo = taskParams // 待完成的任务参数数组，包含了n个小任务所需参数，所以是一个二维数组
   this.taskParamsDone = [] // 已完成的任务参数数组
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
-
+  this.script = script
+  this.fileIsExist = () => {
+    fs.access(this.task, fs.constants.F_OK, err => {
+      return !err
+    })
+  }
+  this.writeScript = () => {
+    /**
+     * Todo：生产工作进程脚本
+     * 1. 在工作目录下新建脚本
+     * 2. 注入依赖
+     * 3. 引入task模版
+     * 4. 倒入任务脚本内容
+     */
+    if (this.fileIsExist()) {
+      fs.writeFileSync(this.task, '')
+    }
+    try {
+      fs.appendFileSync(this.task, `${this.dependency}\n`, (err) => {
+        if (err) throw new Error('依赖写入失败')
+      })
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      fs.copyFileSync(`${__dirname}/task.js`, this.task)
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      fs.appendFileSync(this.task, this.script.toString(), err => {
+        if (err) throw new Error('任务脚本写入失败')
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  }
+  this.writeScript()
+  /**
+   * 将内容写进脚本
+   */
   /**
    * 复用空闲进程
    * @param key，可复用进程的pid
@@ -175,7 +233,6 @@ function ProcessPool({ maxParallelProcess = 50, timeToClose = 60 * 1000, task = 
 }
 
 module.exports = ProcessPool
-
 ```
 
 ##### ProcessItem.js
@@ -186,7 +243,7 @@ module.exports = ProcessPool
  */
 const ChildProcess = require('child_process')
 
-function ProcessItem({ task = '', workParam = [] }) {
+function ProcessItem({ task = './task.js', workParam = [] }) {
   /**
    * state 状态码
    * 1: 忙碌
@@ -221,7 +278,6 @@ ProcessItem.prototype.createProcess = (task, workParam) => {
 }
 
 module.exports = ProcessItem
-
 ```
 
 ##### Task.js
@@ -270,19 +326,12 @@ async function main() {
     await unFinishTask()
   }
 }
-
+main()
 /**
  * @name 工作进程负责的任务
  * @param workParam // 执行任务所需的参数数组
+ * 动态添加任务脚本到此文件尾部
  */
-// async function task(workParam) {
-//   //Todo: 写下工作进程负责的任务
-//   fs.appendFileSync('./timestamp.txt', `${workParam[0]}\n`, (err) => {
-//     if (err) throw new Error(err)
-//   })
-// }
-
-main()
 ```
 
 #### 使用方法
@@ -297,22 +346,26 @@ npm install node-process-pool
 
 ```js
 // 进程池使用示例
-const ProcessPool = require('node-process-pool')
+const ProcessPool = require('../src/ProcessPool')
 const taskParams = []
-for (let i = 0; i < 5000; i++) {
+for (let i = 0; i < 100; i++) {
   taskParams[i] = [i]
 }
 // 创建进程池实例
 const processPool = new ProcessPool({
   maxParallelProcess: 50, // 支持最大进程并行数
   timeToClose: 60 * 1000, // 单个任务被执行最大时长
-  script: async function task(taskParams) {
-    console.log(taskParams)
-  },
+  dependency: `const path = require('path')`, // 任务脚本依赖
+  workDir: __dirname, // 当前目录
+  taskName: 'test', // 任务脚本名称
+  script: async function task(workParam) {
+    console.log(workParam)
+  }, // 任务脚本内容
   taskParams // 需要执行的任务参数列表，二维数组
 })
 // 利用进程池进行处理大规模任务
 processPool.run()
+
 // 测试任务1：写时间戳到文本中
 // 进程池：5000个任务，耗时2.7s，每个任务耗时0.54ms
 // 单线程：5000个任务，耗时0.456s，每个任务耗时0.0934ms
@@ -322,7 +375,6 @@ processPool.run()
 // 单线程：5000个任务，耗时100.260s，每个任务耗时20.052ms
 
 // 显然，当处理独立且耗时任务时，使用进程池更加合适。例如爬取信息，直接会将对方服务器503，2333333～
-
 ```
 
 #### Todo

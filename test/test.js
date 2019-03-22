@@ -47,3 +47,6 @@ main()
  * @param workParam // 执行任务所需的参数数组
  * 动态添加任务脚本到此文件尾部
  */
+async function task(workParam) {
+    console.log(workParam)
+  }

@@ -4,28 +4,71 @@ const fs = require('fs')
  * 进程池类
  * @param maxParallelProcess，最大并行工作进程数
  * @param timeToClose，任务最长耗时时间
- * @param task，任务脚本
- * @param script 脚本内容
  * @param taskParams，所有任务脚本需要的参数
+ * @param dependency，任务脚本所需依赖
+ * @param taskName, 工作脚本名称
+ * @param script 脚本内容
+ * @param workDir 工作目录
  * Todo: 读写同一文件时出现任务丢失，待修复bug，传入的script的参数如果有路径需要做一个替换
  * Todo: 脚本内容现在是直接加到task.js尾部，虽然后面的会覆盖前面的，但是这也太hack了，写个插件？类似webpack-html-plugin
  */
-function ProcessPool({ maxParallelProcess = 50, timeToClose = 60 * 1000, taskParams = [], script = ''}) {
+function ProcessPool({
+    maxParallelProcess = 50,
+    timeToClose = 60 * 1000,
+    taskParams = [],
+    dependency = '',
+    workDir ='',
+    taskName = '',
+    script = '',}) {
   this.processList = new Map() // 使用Map存储进程对象
   this.currentProcessNum = 0 // 当前活动进程数
   // this.timeToClose = timeToClose
   if (typeof script !== 'function' && script.name === 'task') {
     throw new Error('script must be a async function that named task')
   }
-  this.task = `${__dirname}/task.js`// 任务脚本路径
+  this.dependency = dependency
+  this.workDir = workDir
+  this.taskName = taskName
+  this.task = `${this.workDir}/${this.taskName}.js`// 任务脚本路径
   this.taskParamsTodo = taskParams // 待完成的任务参数数组，包含了n个小任务所需参数，所以是一个二维数组
   this.taskParamsDone = [] // 已完成的任务参数数组
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
   this.script = script
-  this.writeScript = () => {
-    fs.appendFileSync(this.task, `\n${this.script.toString()}\n`, (err) => {
-      if (err) throw new Error('写入脚本出错')
+  this.fileIsExist = () => {
+    fs.access(this.task, fs.constants.F_OK, err => {
+      return !err
     })
+  }
+  this.writeScript = () => {
+    /**
+     * Todo：生产工作进程脚本
+     * 1. 在工作目录下新建脚本
+     * 2. 注入依赖
+     * 3. 引入task模版
+     * 4. 倒入任务脚本内容
+     */
+    if (this.fileIsExist()) {
+      fs.writeFileSync(this.task, '')
+    }
+    try {
+      fs.appendFileSync(this.task, `${this.dependency}\n`, (err) => {
+        if (err) throw new Error('依赖写入失败')
+      })
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      fs.copyFileSync(`${__dirname}/task.js`, this.task)
+    } catch (e) {
+      console.log(e)
+    }
+    try {
+      fs.appendFileSync(this.task, this.script.toString(), err => {
+        if (err) throw new Error('任务脚本写入失败')
+      })
+    } catch (e) {
+      console.log(e)
+    }
   }
   this.writeScript()
   /**
