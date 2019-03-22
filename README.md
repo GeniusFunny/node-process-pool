@@ -1,10 +1,12 @@
-### Node ProcessPool
+### Node Process Pool
 
-#### 背景
+#### 背景 Background
 
 Node是单线程模型，当需要执行多个独立且耗时任务的时候，只能通过child_process来分发任务，提高处理速度；不像Java这种多线程语言，可以通过线程来解决并行问题，Node只能创建进程来进行处理；但是进程相对于线程来说，开销太大。一旦进程数较多时，CPU和内存消耗严重（影响我干其他的事情），所以做了一个简易版的进程池，用来解决并行任务的处理。
 
-#### 思路
+Node is a single-threaded model. When multiple independent and time-consuming tasks need to be performed, tasks can only be distributed through child_process to improve processing speed. Unlike multi-threaded languages like Java, parallel problems can be solved by threads. Node only Processes can be created for processing; but processes are too expensive for threads. Once the number of processes is large, CPU and memory consumption is severe (affecting other things I do), so I made a simple version of the process pool to solve the parallel task processing.
+
+#### 思路 Thinking analysis
 
 主控进程+工作进程群
 
@@ -16,14 +18,24 @@ ProcessItem是我们进程池里的进程对象，ProcessItem对象除了process
 
 由于主控进程即要负责IPC又要不断监听批任务完成的情况，目前我采用的方式是setInterval切割，让IPC和监控能交替进行（ps：应该有更好的方法
 
-#### 实现
+Master process + work process group
+
+ProcessPool is where we manage the process. We pass a configuration parameter (the task script, the parameters required by the script, the maximum number of parallel processes) to generate a ProcessPool instance, and then use this instance to manage the process pool.
+
+ProcessItem is the process object in our process pool. In addition to the process information, the ProcessItem object also adds a unique identifier and status (busy, task failed, task completed, process unavailable).
+
+When a batch of tasks starts, we will fork to the maximum number of parallel processes at one time, and then start monitoring whether there is a work process to complete the task. If there is a work process to complete the task, then we can reuse the work process and let it perform new tasks. ; If the task fails, we will return the task to the process pool and wait for the next distribution.
+
+Since the master process is responsible for the IPC and constantly monitors the completion of the batch task, the current method I use is setInterval cutting, so that IPC and monitoring can be alternated (ps: there should be a better way
+
+#### 实现 achieve
 
 ##### ProcessPool
 
 ```javascript
 const ProcessItem = require('./ProcessItem')
 /**
- * 进程池类
+ * 进程池类 Process Pool
  * @param maxParallelProcess，最大并行工作进程数
  * @param timeToClose，任务最长耗时时间
  * @param task，任务脚本
@@ -310,4 +322,3 @@ main()
 
 1. 逻辑完善
 2. 代码优化
-3. 完善，开源，希望更多人用
