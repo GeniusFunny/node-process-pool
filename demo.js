@@ -1,15 +1,17 @@
 // 进程池使用示例
-const ProcessPool = require('../src/ProcessPool')
-const test = []
+const ProcessPool = require('./src/ProcessPool')
+const taskParams = []
 for (let i = 0; i < 5000; i++) {
-  test[i] = [i]
+  taskParams[i] = [i]
 }
 // 创建进程池实例
 const processPool = new ProcessPool({
   maxParallelProcess: 50, // 支持最大进程并行数
   timeToClose: 60 * 1000, // 单个任务被执行最大时长
-  task: `${__dirname}/task.js`, // 任务脚本
-  taskParams: test // 需要执行的任务参数列表，二维数组
+  script: async function task(taskParams) {
+    console.log(taskParams)
+  },
+  taskParams // 需要执行的任务参数列表，二维数组
 })
 // 利用进程池进行处理大规模任务
 processPool.run()

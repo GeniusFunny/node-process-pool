@@ -3,7 +3,7 @@
  */
 const ChildProcess = require('child_process')
 
-function ProcessItem({ task = '', workParam = [] }) {
+function ProcessItem({ task = './task.js', workParam = [] }) {
   /**
    * state 状态码
    * 1: 忙碌
