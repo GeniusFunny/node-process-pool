@@ -1,8 +1,7 @@
+const ChildProcess = require('child_process')
 /**
  * 工作进程类
  */
-const ChildProcess = require('child_process')
-
 function ProcessItem({ task = './task.js', workParam = [] }) {
   /**
    * state 状态码
@@ -11,28 +10,37 @@ function ProcessItem({ task = './task.js', workParam = [] }) {
    * 3: 未完成任务
    * 4： 不可用
    */
+  if (!Array.isArray(workParam)) {
+    throw new Error('workParam must be a array')
+  }
+  if (typeof task !== 'string') {
+    throw new Error('workParam must be a string')
+  }
   this.process = this.createProcess(task, workParam)
   this.state = 1
   this.id = this.process.pid
-  this.finishTask = () => {
-    if (this.state === 1) {
-      this.state = 2
-    }
-  }
-  this.terminate = () => {
-    this.process.kill()
-    this.state = 4
-  }
-  this.unFinishTask = () => {
-    this.state = 3
+}
+ProcessItem.prototype.finishTask = function() {
+  if (this.state === 1) {
+    this.state = 2
   }
 }
-ProcessItem.prototype.createProcess = (task, workParam) => {
+ProcessItem.prototype.unFinishTask = function() {
+  this.state = 3
+}
+ProcessItem.prototype.terminate = function() {
+  try {
+    this.process.kill()
+    this.state = 4
+  } catch (e) {
+    throw new Error(`关闭进程${this.id}失败`)
+  }
+}
+ProcessItem.prototype.createProcess = function (task, workParam) {
   let childProcess = ChildProcess.fork(task, workParam)
   if (childProcess) {
     return childProcess
   } else {
-    console.log('创建进程失败')
     throw new Error('create process failed')
   }
 }
