@@ -30,7 +30,7 @@ Since the master process is responsible for the IPC and constantly monitors the 
 
 #### 实现 achieve
 
-##### ProcessPool
+##### ProcessPool.js
 
 ```javascript
 const ProcessItem = require('./ProcessItem')
@@ -178,7 +178,7 @@ module.exports = ProcessPool
 
 ```
 
-##### ProcessItem
+##### ProcessItem.js
 
 ```js
 /**
@@ -224,54 +224,10 @@ module.exports = ProcessItem
 
 ```
 
-#### 使用方法及示例
-
-##### main 主控进程
-
-```js
-// 进程池使用示例
-const ProcessPool = require('../src/ProcessPool')
-const test = []
-for (let i = 0; i < 5000; i++) {
-  test[i] = [i]
-}
-// 创建进程池实例
-const processPool = new ProcessPool({
-  maxParallelProcess: 50, // 支持最大进程并行数
-  timeToClose: 60 * 1000, // 单个任务被执行最大时长
-  task: `${__dirname}/task.js`, // 任务脚本
-  taskParams: test // 需要执行的任务参数列表，二维数组
-})
-// 利用进程池进行处理大规模任务
-processPool.run()
-
-// 测试任务1：写时间戳到文本中
-// 进程池：5000个任务，耗时2.7s，每个任务耗时0.54ms
-// 单线程：5000个任务，耗时0.456s，每个任务耗时0.0934ms
-
-// 测试任务2：写时间戳到文本中，但每个任务需要至少耗时20ms（while空循环）
-// 进程池：5000个任务，耗时15.089s，每个任务耗时3.02ms
-// 单线程：5000个任务，耗时100.260s，每个任务耗时20.052ms
-
-// 显然，当处理独立且耗时任务时，使用进程池更加合适。例如爬取信息，直接会将对方服务器503，2333333～
-
-```
-
-##### task 任务脚本
+##### Task.js
 
 ```js
 const fs = require('fs')
-/**
- * @name 工作进程负责的任务
- * @param workParam // 执行任务所需的参数数组
- */
-async function task(workParam) {
-  // 在这里写你的任务
-  fs.appendFileSync('./timestamp.txt', `${workParam[0]}\n`, (err) => {
-    if (err) throw new Error(err)
-  })
-}
-
 /**
  * 当进程被子进程创建后，立刻执行工作任务
  */
@@ -279,14 +235,15 @@ async function firstTask() {
   const workParam = process.argv.slice(2)
   await task(workParam)
 }
-
 /**
- * 完成任务后，向进程池传递信息
+ * 完成任务，提示进程池已完成，工作进程空闲
  */
 async function finishTask() {
   await process.send('finish')
 }
-
+/**
+ * 任务失败，提示进程池未完成，归还任务
+ */
 async function unFinishTask() {
   await process.send('failed')
 }
@@ -301,7 +258,6 @@ process.on('message', async workParam => {
     await unFinishTask()
   }
 })
-
 /**
  * 进程被创建时立即执行进程池指派的任务
  * @returns {Promise<void>}
@@ -315,7 +271,58 @@ async function main() {
   }
 }
 
+/**
+ * @name 工作进程负责的任务
+ * @param workParam // 执行任务所需的参数数组
+ */
+// async function task(workParam) {
+//   //Todo: 写下工作进程负责的任务
+//   fs.appendFileSync('./timestamp.txt', `${workParam[0]}\n`, (err) => {
+//     if (err) throw new Error(err)
+//   })
+// }
+
 main()
+```
+
+#### 使用方法
+
+##### 安装
+
+```bash
+npm install node-process-pool
+```
+
+##### 使用
+
+```js
+// 进程池使用示例
+const ProcessPool = require('node-process-pool')
+const taskParams = []
+for (let i = 0; i < 5000; i++) {
+  taskParams[i] = [i]
+}
+// 创建进程池实例
+const processPool = new ProcessPool({
+  maxParallelProcess: 50, // 支持最大进程并行数
+  timeToClose: 60 * 1000, // 单个任务被执行最大时长
+  script: async function task(taskParams) {
+    console.log(taskParams)
+  },
+  taskParams // 需要执行的任务参数列表，二维数组
+})
+// 利用进程池进行处理大规模任务
+processPool.run()
+// 测试任务1：写时间戳到文本中
+// 进程池：5000个任务，耗时2.7s，每个任务耗时0.54ms
+// 单线程：5000个任务，耗时0.456s，每个任务耗时0.0934ms
+
+// 测试任务2：写时间戳到文本中，但每个任务需要至少耗时20ms（while空循环）
+// 进程池：5000个任务，耗时15.089s，每个任务耗时3.02ms
+// 单线程：5000个任务，耗时100.260s，每个任务耗时20.052ms
+
+// 显然，当处理独立且耗时任务时，使用进程池更加合适。例如爬取信息，直接会将对方服务器503，2333333～
+
 ```
 
 #### Todo
