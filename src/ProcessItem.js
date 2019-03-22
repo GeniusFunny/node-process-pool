@@ -14,15 +14,11 @@ function ProcessItem({ task = '', workParam = [] }) {
   this.process = this.createProcess(task, workParam)
   this.state = 1
   this.id = this.process.pid
-  this.receiveTask = (workParam) => {
-    this.process.send(workParam)
-  }
   this.finishTask = () => {
     if (this.state === 1) {
       this.state = 2
     }
   }
-  this.sendMessageToPool = () => {}
   this.terminate = () => {
     this.process.kill()
     this.state = 4
