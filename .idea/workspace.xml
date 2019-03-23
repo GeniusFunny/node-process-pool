@@ -2,12 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56603820-3d5a-48f2-90ea-24adb72468b2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ProcessItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ProcessPool.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/ProcessPool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/util.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,11 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+            <state relative-caret-position="56">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -33,51 +34,70 @@
         <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="168">
-              <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+              <caret line="27" column="33" lean-forward="true" selection-end-line="48" />
               <folding>
                 <element signature="n#!!block;n#ProcessItem#0" />
-                <element signature="e#236#246#0" />
-                <element signature="e#323#333#0" />
-                <element signature="e#438#444#0" />
-                <element signature="e#414#442#0" />
-                <element signature="e#567#573#0" />
-                <element signature="e#517#624#0" />
-                <element signature="e#578#769#0" />
-                <element signature="e#768#797#0" />
+                <element signature="e#526#578#0" />
+                <element signature="e#627#647#0" />
+                <element signature="e#693#807#0" />
+                <element signature="e#873#1038#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProcessPool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="199" column="1" lean-forward="true" selection-end-line="201" />
+            <state relative-caret-position="168">
+              <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
               <folding>
-                <element signature="e#563#639#0" />
-                <element signature="e#712#722#0" />
-                <element signature="e#844#854#0" />
-                <element signature="e#949#959#0" />
-                <element signature="e#1041#1051#0" />
-                <element signature="e#1103#1113#0" />
-                <element signature="e#1142#1152#0" />
-                <element signature="e#1431#1453#0" />
-                <element signature="e#1642#1648#0" />
-                <element signature="e#1470#1599#0" />
-                <element signature="e#2043#2090#0" />
-                <element signature="e#1908#1914#0" />
-                <element signature="e#2096#2150#0" />
-                <element signature="e#1914#2084#0" />
-                <element signature="e#2611#2617#0" />
-                <element signature="e#3015#3021#0" />
-                <element signature="e#3269#3312#0" />
-                <element signature="e#3323#3329#0" />
-                <element signature="e#3621#3648#0" />
-                <element signature="e#4006#4029#0" />
-                <element signature="e#5281#5287#0" />
-                <element signature="e#4152#4272#0" />
+                <element signature="n#!!doc;n#ProcessPool#0" />
+                <element signature="e#569#579#0" />
+                <element signature="e#590#600#0" />
+                <element signature="e#1464#1480#0" />
+                <element signature="e#1520#2682#0" />
+                <element signature="e#1464#1481#0" />
+                <element signature="e#1533#2115#0" />
+                <element signature="e#1651#1772#0" />
+                <element signature="e#1719#1767#0" />
+                <element signature="e#1783#1818#0" />
+                <element signature="e#1825#1885#0" />
+                <element signature="e#1896#1935#0" />
+                <element signature="e#1942#2063#0" />
+                <element signature="e#2136#2166#0" />
+                <element signature="e#3867#4146#0" />
+                <element signature="e#4147#4197#0" />
+                <element signature="e#4253#4505#0" />
+                <element signature="e#4444#4491#0" />
+                <element signature="e#2713#2754#0" />
+                <element signature="e#2806#3022#0" />
+                <element signature="e#2890#3020#0" />
+                <element signature="e#4829#4859#0" />
+                <element signature="e#4098#4259#0" />
+                <element signature="e#3821#3840#0" />
+                <element signature="e#3893#3899#0" />
+                <element signature="e#4022#4038#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="-538" />
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-541">
+              <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -85,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/util.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+            <state relative-caret-position="252">
+              <caret line="9" column="3" lean-forward="true" selection-end-line="13" />
             </state>
           </provider>
         </entry>
@@ -94,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+            <state relative-caret-position="168">
+              <caret line="19" column="3" lean-forward="true" selection-end-line="48" />
               <folding>
                 <element signature="n#!!doc;n#firstTask#0" />
                 <element signature="n#!!block;n#firstTask#0" />
@@ -103,10 +123,10 @@
                 <element signature="n#!!block;n#finishTask#0" />
                 <element signature="n#!!doc;n#unFinishTask#0" />
                 <element signature="n#!!block;n#unFinishTask#0" />
-                <element signature="e#343#366#0" />
-                <element signature="e#408#511#0" />
+                <element signature="e#383#486#0" />
                 <element signature="n#!!doc;n#main#0" />
                 <element signature="n#!!block;n#main#0" />
+                <element signature="e#677#756#0" />
               </folding>
             </state>
           </provider>
@@ -115,17 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/demo.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+            <state relative-caret-position="140">
+              <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -145,6 +156,10 @@
       <find>this.reuseProcess</find>
       <find>task</find>
       <find>console.log</find>
+      <find>writeF</find>
+      <find>listenProcess</find>
+      <find>fileIsExist</find>
+      <find>this.script</find>
     </findStrings>
     <replaceStrings>
       <replace>workPara</replace>
@@ -169,13 +184,14 @@
         <option value="$PROJECT_DIR$/demo/test.js" />
         <option value="$PROJECT_DIR$/demo.js" />
         <option value="$PROJECT_DIR$/test.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/test/demo.js" />
+        <option value="$PROJECT_DIR$/src/ProcessItem.js" />
         <option value="$PROJECT_DIR$/src/task.js" />
         <option value="$PROJECT_DIR$/src/util.js" />
-        <option value="$PROJECT_DIR$/src/ProcessItem.js" />
+        <option value="$PROJECT_DIR$/test/test.js" />
+        <option value="$PROJECT_DIR$/src/index.js" />
         <option value="$PROJECT_DIR$/src/ProcessPool.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -259,12 +275,13 @@
       <workItem from="1553240295504" duration="3069000" />
       <workItem from="1553243902015" duration="1303000" />
       <workItem from="1553253457455" duration="2958000" />
-      <workItem from="1553266758528" duration="1773000" />
+      <workItem from="1553266758528" duration="1867000" />
+      <workItem from="1553330193231" duration="5321000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26889000" />
+    <option name="totallyTimeSpent" value="32304000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -298,24 +315,88 @@
     <entry file="file://$PROJECT_DIR$/index.js" />
     <entry file="file://$PROJECT_DIR$/demo/test.js" />
     <entry file="file://$PROJECT_DIR$/test.js" />
-    <entry file="file://$PROJECT_DIR$/test/demo.js">
+    <entry file="file://$PROJECT_DIR$/test/test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
+        <state relative-caret-position="-541">
+          <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test.js">
+    <entry file="file://$PROJECT_DIR$/test/demo.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="43" column="6" lean-forward="true" selection-start-line="43" selection-start-column="6" selection-end-line="43" selection-end-column="6" />
+        <state relative-caret-position="140">
+          <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="44" selection-start-column="44" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-538" />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProcessPool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="15" column="13" lean-forward="true" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc;n#ProcessPool#0" />
+            <element signature="e#569#579#0" />
+            <element signature="e#590#600#0" />
+            <element signature="e#1464#1480#0" />
+            <element signature="e#1520#2682#0" />
+            <element signature="e#1464#1481#0" />
+            <element signature="e#1533#2115#0" />
+            <element signature="e#1651#1772#0" />
+            <element signature="e#1719#1767#0" />
+            <element signature="e#1783#1818#0" />
+            <element signature="e#1825#1885#0" />
+            <element signature="e#1896#1935#0" />
+            <element signature="e#1942#2063#0" />
+            <element signature="e#2136#2166#0" />
+            <element signature="e#3867#4146#0" />
+            <element signature="e#4147#4197#0" />
+            <element signature="e#4253#4505#0" />
+            <element signature="e#4444#4491#0" />
+            <element signature="e#2713#2754#0" />
+            <element signature="e#2806#3022#0" />
+            <element signature="e#2890#3020#0" />
+            <element signature="e#4829#4859#0" />
+            <element signature="e#4098#4259#0" />
+            <element signature="e#3821#3840#0" />
+            <element signature="e#3893#3899#0" />
+            <element signature="e#4022#4038#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="27" column="33" lean-forward="true" selection-end-line="48" />
+          <folding>
+            <element signature="n#!!block;n#ProcessItem#0" />
+            <element signature="e#526#578#0" />
+            <element signature="e#627#647#0" />
+            <element signature="e#693#807#0" />
+            <element signature="e#873#1038#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+        <state relative-caret-position="168">
+          <caret line="19" column="3" lean-forward="true" selection-end-line="48" />
           <folding>
             <element signature="n#!!doc;n#firstTask#0" />
             <element signature="n#!!block;n#firstTask#0" />
@@ -323,82 +404,25 @@
             <element signature="n#!!block;n#finishTask#0" />
             <element signature="n#!!doc;n#unFinishTask#0" />
             <element signature="n#!!block;n#unFinishTask#0" />
-            <element signature="e#343#366#0" />
-            <element signature="e#408#511#0" />
+            <element signature="e#383#486#0" />
             <element signature="n#!!doc;n#main#0" />
             <element signature="n#!!block;n#main#0" />
+            <element signature="e#677#756#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="3" column="3" lean-forward="true" selection-start-line="3" selection-start-column="3" selection-end-line="3" selection-end-column="3" />
+        <state relative-caret-position="252">
+          <caret line="9" column="3" lean-forward="true" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="29" column="1" lean-forward="true" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
-          <folding>
-            <element signature="n#!!block;n#ProcessItem#0" />
-            <element signature="e#236#246#0" />
-            <element signature="e#323#333#0" />
-            <element signature="e#438#444#0" />
-            <element signature="e#414#442#0" />
-            <element signature="e#567#573#0" />
-            <element signature="e#517#624#0" />
-            <element signature="e#578#769#0" />
-            <element signature="e#768#797#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProcessPool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="199" column="1" lean-forward="true" selection-end-line="201" />
-          <folding>
-            <element signature="e#563#639#0" />
-            <element signature="e#712#722#0" />
-            <element signature="e#844#854#0" />
-            <element signature="e#949#959#0" />
-            <element signature="e#1041#1051#0" />
-            <element signature="e#1103#1113#0" />
-            <element signature="e#1142#1152#0" />
-            <element signature="e#1431#1453#0" />
-            <element signature="e#1642#1648#0" />
-            <element signature="e#1470#1599#0" />
-            <element signature="e#2043#2090#0" />
-            <element signature="e#1908#1914#0" />
-            <element signature="e#2096#2150#0" />
-            <element signature="e#1914#2084#0" />
-            <element signature="e#2611#2617#0" />
-            <element signature="e#3015#3021#0" />
-            <element signature="e#3269#3312#0" />
-            <element signature="e#3323#3329#0" />
-            <element signature="e#3621#3648#0" />
-            <element signature="e#4006#4029#0" />
-            <element signature="e#5281#5287#0" />
-            <element signature="e#4152#4272#0" />
-          </folding>
+        <state relative-caret-position="56">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
         </state>
       </provider>
     </entry>

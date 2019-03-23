@@ -1,5 +1,13 @@
-function isFunction(func) {
-  if (typeof func !== 'function') {
-    throw new Error(`${func} must be a function`)
+function isCorrectType(name,value, type) {
+  if (type === 'array') {
+    if (!Array.isArray(value)) {
+      throw new Error(`${name} must be a array`)
+    }
+  } else {
+    if (typeof value !== type) {
+      throw new Error(`${name} must be a ${type}`)
+    }
   }
 }
+
+exports.isCorrectType = isCorrectType
