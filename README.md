@@ -1,68 +1,77 @@
-### Node.js的简易进程池
+<p align="center">
+	<img src="https://i.loli.net/2019/03/24/5c973b70e65b3.png"/>
+<p>
+<h1 align="center">A Process Pool for Node.js</h1>
+[![npm package](https://img.shields.io/npm/v/node-process-pool.svg)](https://www.npmjs.org/package/node-process-pool)[![NPM downloads](https://img.shields.io/npm/dw/node-process-pool.svg)](http://npmjs.com/node-process-pool)![](https://img.shields.io/bundlephobia/min/node-process-pool.svg)![](https://img.shields.io/npm/l/node-process-pool.svg)
 
-#### 背景
+English | [简体中文](./README-zh_CN.md)
 
-Node是单线程模型，当需要执行多个独立且耗时任务的时候，只能通过child_process来分发任务，提高处理速度；不像Java这种多线程语言，可以通过线程来解决并行问题，Node只能创建进程来进行处理；但是进程相对于线程来说，开销太大。一旦进程数较多时，CPU和内存消耗严重（影响我干其他的事情），所以做了一个简易版的进程池，用来解决并行任务的处理。
+## 🖥 Background
 
-适用场景：相同且独立且耗时的任务，例如，拿到某网站1000个用户的账号密码，我现在想要他们的信息，爬他，node-process-pool非常适合。
+Node.js is a single-threaded model. When multiple independent and time-consuming tasks need to be performed, tasks can only be distributed through child_process to improve processing speed. Unlike multi-threaded languages like Java, parallel problems can be solved by threads. Node.js only Processes can be created for processing; but processes are too expensive for threads. Once the number of processes is large, CPU and memory consumption is severe (affecting other things I do), so I made a simple version of the process pool to solve the parallel task processing.
 
-#### 思路
+Applicable scenarios: The same and independent and time-consuming tasks, for example, get the account password of 1000 users of a website, I want their information now, climb him, node-process-pool is very suitable.
 
-主控进程+工作进程群
+## 🤔Thinking
 
-ProcessPool是我们管理进程的地方，我们通过传递配置参数（任务脚本、脚本需要的参数、最大并行进程数）生成一个ProcessPool实例，然后通过这个实例来管控进程池。
+Master process + work process group
 
-ProcessItem是我们进程池里的进程对象，ProcessItem对象除了process的信息，我们还增加了唯一标识和状态（忙碌、任务失败、任务完成、进程不可用）。
+ProcessPool is where we manage the process. We pass a configuration parameter (the task script, the parameters required by the script, the maximum number of parallel processes) to generate a ProcessPool instance, and then use this instance to manage the process pool.
 
-一批任务开始时，我们会一次性fork到最大并行进程数，然后开始监控是否有工作进程完成任务，如果有工作进程完成了任务，那我们就可以复用这个工作进程，让其执行新任务；如果任务执行失败，我们会将任务归还给进程池，等待下一次分发。
+ProcessItem is the process object in our process pool. In addition to the process information, the ProcessItem object also adds a unique identifier and status (busy, task failed, task completed, process unavailable).
 
-**由于是相同且独立且耗时的任务，所以当某个工作进程完成任务时，我们很有必要去检测所有的工作进程是否已完成任务，而不只是复用这个工作进程，我们要一批一批的复用！！！**
+When a batch of tasks starts, we will fork to the maximum number of parallel processes at one time, and then start monitoring whether there is a work process to complete the task. If there is a work process to complete the task, then we can reuse the work process and let it perform new tasks. ; If the task fails, we will return the task to the process pool and wait for the next distribution.
 
-**因为差不多的时间开始执行相同的任务，当一个工作进程完成时，完全可以相信其他工作进程也完成了任务，所以检测一轮所有的工作进程，若空闲，给他们分配新任务。**
+Because it is the same, independent and time-consuming task, when a work process completes the task, it is necessary to detect whether all the work processes have completed the task, not just reuse the work process, we have to batch one Batch reuse! ! !
 
-**既然是批量分配任务，就不会存在只有某个工作进程在辛苦的运行，其他工作进程袖手旁，哈哈哈哈哈，总得雨露均沾嘛。**
+Because the same task is started almost at the same time, when a work process is completed, it is entirely convinced that other work processes also complete the task, so all rounds of work processes are detected, and if they are idle, they are assigned new tasks.
 
-~~由于主控进程即要负责IPC又要不断监听批任务完成的情况，目前我采用的方式是setInterval切割，让IPC和监控能交替进行（ps：应该有更好的方法~~
+Since it is a batch assignment task, there will be no hard work in a certain work process. Other work processes are on the sidelines, hahahahaha, and it’s always rainy.
 
-**我们真的需要setInterval来去轮询任务状态吗，什么时候才需要轮询任务状态然后调度？**
-工作进程状态发生改变的时候，才是我们需要去检测任务状态和调度的时机；所以，我们也可以利用IPC来通知主控进程进行检测任务状态和调度。
-**ps：当然，还有更好的方法，嘿嘿**
+Do we really need setInterval to poll the task status, when do we need to poll the task status and then schedule?
+When the status of the work process changes, it is the time we need to detect the task status and scheduling; therefore, we can also use the IPC to notify the master process to detect the status and scheduling of the task.
+Ps: Of course, there are better ways, lol
 
-#### 使用方法
+## ✨ Features
+- ##### Fast
 
-##### 安装
+  A university system, 12,000 users, each user login requires two API accesses, two API accesses must have a 0.5s interval, and then the information is written to the text.
+
+  Single thread (not tested, theoretically): 12000*0.5 —> at least **6000s**.
+
+  Process pool (tested, process pool with capacity 50): **206s**, average 17.1ms per task
+
+  **Increased efficiency: nearly 30 times**
+## 📦 Install
 
 ```bash
 npm install node-process-pool
 ```
 
-##### 使用
+## 🔨 Usage
 
 ```js
-// 进程池使用示例
-const ProcessPool = require('../src/ProcessPool')
+// Process pool usage example
+const ProcessPool = require('node-process-pool')
 const taskParams = []
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 5000; i++) {
   taskParams[i] = [i]
 }
-// 创建进程池实例
+// Create a process pool instance
 const processPool = new ProcessPool({
-  maxParallelProcess: 50, // 支持最大进程并行数
-  timeToClose: 60 * 1000, // 单个任务被执行最大时长
-  dependency: `const path = require('path')`, // 任务脚本依赖
-  workDir: __dirname, // 当前目录
-  taskName: 'test', // 任务脚本名称
-  script: async function task(workParam) {
-    console.log(workParam)
-  }, // 任务脚本内容
-  taskParams // 需要执行的任务参数列表，二维数组
+  maxParallelProcess: 50, // Supports maximum number of process parallelism
+  timeToClose: 60 * 1000, // The maximum time for a single task to be executed
+  dependency: `const path = require('path')`, // task script dependencies
+  workDir: __dirname, // current directory
+  taskName: 'test', // task script name
+  script: async function task(taskParams) {
+    console.log(taskParams)
+  },
+  taskParams // Need to perform the task parameter list, two-dimensional array
 })
-// 利用进程池进行处理大规模任务
+// Process pools are used to handle large scale tasks
 processPool.run()
 ```
+## 🤝 Contributing [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-#### Todo
-
-1. 逻辑完善
-2. 代码优化
-3. Star && PR
+I welcome all contributions. You can submit any ideas as [pull requests](https://github.com/geniusfunny/node-process-pool/pulls) or as [GitHub issues](https://github.com/geniusfunny/node-process/issues). If you'd like to improve code, please create a Pull Request.
