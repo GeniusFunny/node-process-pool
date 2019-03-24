@@ -1,4 +1,7 @@
-/**
+const path = require('path')
+async function task(workParam) {
+    console.log(workParam)
+  }/**
  * 当进程被子进程创建后，立刻执行工作任务
  */
 async function firstTask() {
@@ -46,6 +49,3 @@ main()
  * @param workParam // 执行任务所需的参数数组
  * 动态添加任务脚本到此文件尾部
  */
-async function task(workParam) {
-    console.log(workParam)
-  }

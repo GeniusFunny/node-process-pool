@@ -40,6 +40,7 @@ function ProcessPool({
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
   this.script = script // 任务脚本内容
   this.monitor = '' // 用于调度IPC和检测任务状态的setInterval
+  this.ready = false // 任务脚本是否构建完成
   try {
     this.buildTaskScript() // 根据模版创建任务脚本
   } catch (e) {
@@ -50,37 +51,39 @@ function ProcessPool({
  * 启动进程池
  */
 ProcessPool.prototype.run = function() {
-  this.monitor = setInterval(() => {
-    let flag = this.hasWorkProcessRunning() // 判断是否有工作进程正在执行或是否是第一次处理任务
-    const taskTodoNum = this.taskParamsTodo.length
-    if (flag === 1 && taskTodoNum) {
-      // 初始阶段，fork min{任务数，最大进程数} 的进程
-      while (this.currentProcessNum <= this.maxParallelProcess && this.currentProcessNum <= taskTodoNum) {
-        this.addProcess()
-      }
-    } else if (flag > 0 && !taskTodoNum) {
-      // 如果有工作进程正在执行且没有新的任务要执行，那么等待工作进程结束任务
-    } else if (flag > 0 && taskTodoNum) {
-      // 如果有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务
-      const processList = this.processList.values()
-      for (const p of processList) {
-        if (p.state !== 1 || p.state !== 4) {
-          this.reuseProcess(p.id)
+  if (this.ready) {
+    this.monitor = setInterval(() => {
+      let flag = this.hasWorkProcessRunning() // 判断是否有工作进程正在执行或是否是第一次处理任务
+      const taskTodoNum = this.taskParamsTodo.length
+      if (flag === 1 && taskTodoNum) {
+        // 初始阶段，fork min{任务数，最大进程数} 的进程
+        while (this.currentProcessNum <= this.maxParallelProcess && this.currentProcessNum <= taskTodoNum) {
+          this.addProcess()
         }
-      }
-    } else if (flag < 0 && taskTodoNum) {
-      // 如果没有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务，如果没有则新启动进程进行执行任务
-      const processList = this.processList.values()
-      for (const p of processList) {
-        if (p.state !== 1 || p.state !== 4) {
-          this.reuseProcess(p.id)
+      } else if (flag > 0 && !taskTodoNum) {
+        // 如果有工作进程正在执行且没有新的任务要执行，那么等待工作进程结束任务
+      } else if (flag > 0 && taskTodoNum) {
+        // 如果有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务
+        const processList = this.processList.values()
+        for (const p of processList) {
+          if (p.state !== 1 || p.state !== 4) {
+            this.reuseProcess(p.id)
+          }
         }
+      } else if (flag < 0 && taskTodoNum) {
+        // 如果没有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务，如果没有则新启动进程进行执行任务
+        const processList = this.processList.values()
+        for (const p of processList) {
+          if (p.state !== 1 || p.state !== 4) {
+            this.reuseProcess(p.id)
+          }
+        }
+      } else if (flag < 0 && !taskTodoNum) {
+        // 如果没有工作进程正在执行且没有新的任务要执行，关闭进程池，任务完成
+        this.closeProcessPool()
       }
-    } else if (flag < 0 && !taskTodoNum) {
-      // 如果没有工作进程正在执行且没有新的任务要执行，关闭进程池，任务完成
-      this.closeProcessPool()
-    }
-  }, 1)
+    }, 1)
+  }
 }
 /**
  * 生成任务脚本
@@ -90,25 +93,14 @@ ProcessPool.prototype.buildTaskScript = function() {
   const templateDir = `${__dirname}/task.js`
   const dependency = `${this.dependency}\n`
   const taskBody = this.script.toString()
-  try {
-    fs.writeFileSync(taskDir, dependency, (err) => {
-      if (err) throw new Error('依赖写入失败')
-    })
-  } catch (e) {
-    throw new Error('依赖写入失败')
-  }
-  try {
-    fs.copyFileSync(templateDir, taskDir)
-  } catch (e) {
-    throw new Error('复制task模版失败')
-  }
-  try {
-    fs.appendFileSync(taskDir, taskBody, err => {
-      if (err) throw new Error('任务脚本写入失败')
-    })
-  } catch (e) {
-    throw new Error('任务脚本写入失败')
-  }
+  const templateReadStream = fs.createReadStream(templateDir)
+  const taskWriteStream = fs.createWriteStream(taskDir)
+  taskWriteStream.write(dependency)
+  templateReadStream.pipe(taskWriteStream).write(taskBody)
+  taskWriteStream.on('finish', () => {
+    this.ready = true
+    this.run()
+  })
 }
 /**
  * 添加一个工作进程、指派任务且监听IPC
@@ -189,6 +181,7 @@ ProcessPool.prototype.removeAllProcess = function() {
 ProcessPool.prototype.closeProcessPool = function() {
   this.removeAllProcess()
   clearInterval(this.monitor)
+  this.ready = false
   this.processList = null
 }
 module.exports = ProcessPool
