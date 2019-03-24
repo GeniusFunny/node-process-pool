@@ -1,8 +1,6 @@
-<p align="center">
-	<img src="https://i.loli.net/2019/03/24/5c973b70e65b3.png"/>
-<p>
-<h1 align="center">A Process Pool for Node.js</h1>
-[![npm package](https://img.shields.io/npm/v/node-process-pool.svg)](https://www.npmjs.org/package/node-process-pool)[![NPM downloads](https://img.shields.io/npm/dw/node-process-pool.svg)](http://npmjs.com/node-process-pool)![](https://img.shields.io/bundlephobia/min/node-process-pool.svg)![](https://img.shields.io/npm/l/node-process-pool.svg)
+
+![](https://i.loli.net/2019/03/24/5c973b70e65b3.png)
+![](https://img.shields.io/npm/v/node-process-pool.svg)![](https://img.shields.io/npm/dw/node-process-pool.svg)![](https://img.shields.io/bundlephobia/min/node-process-pool.svg)![](https://img.shields.io/npm/l/node-process-pool.svg)
 
 English | [简体中文](./README-zh_CN.md)
 
