@@ -1,18 +1,23 @@
 // 进程池使用示例
+const fs = require('fs')
 const ProcessPool = require('../src/ProcessPool')
 const taskParams = []
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 1000; i++) {
   taskParams[i] = [i]
 }
 // 创建进程池实例
 const processPool = new ProcessPool({
-  maxParallelProcess: 50, // 支持最大进程并行数
+  maxParallelProcess: 10, // 支持最大进程并行数
   timeToClose: 60 * 1000, // 单个任务被执行最大时长
-  dependency: `const path = require('path')`, // 任务脚本依赖
+  dependency: `const fs = require('fs')`, // 任务脚本依赖
   workDir: __dirname, // 当前目录
   taskName: 'test', // 任务脚本名称
   script: async function task(workParam) {
-    console.log(workParam)
+    try {
+      fs.appendFileSync(`${__dirname}/test.txt`, `${workParam[0]}\n`)
+    } catch (e) {
+      console.log(e)
+    }
   }, // 任务脚本内容
   taskParams // 需要执行的任务参数列表，二维数组
 })

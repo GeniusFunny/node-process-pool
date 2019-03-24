@@ -36,11 +36,10 @@ function ProcessPool({
   this.taskName = taskName // 任务脚本名称
   this.task = `${this.workDir}/${this.taskName}.js`// 任务脚本路径
   this.taskParamsTodo = taskParams // 待完成的任务参数数组，包含了n个小任务所需参数，所以是一个二维数组
-  this.taskParamsDone = [] // 已完成的任务参数数组
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
   this.script = script // 任务脚本内容
-  this.monitor = '' // 用于调度IPC和检测任务状态的setInterval
   this.ready = false // 任务脚本是否构建完成
+  this.count = 0
   try {
     this.buildTaskScript() // 根据模版创建任务脚本
   } catch (e) {
@@ -52,37 +51,35 @@ function ProcessPool({
  */
 ProcessPool.prototype.run = function() {
   if (this.ready) {
-    this.monitor = setInterval(() => {
-      let flag = this.hasWorkProcessRunning() // 判断是否有工作进程正在执行或是否是第一次处理任务
-      const taskTodoNum = this.taskParamsTodo.length
-      if (flag === 1 && taskTodoNum) {
-        // 初始阶段，fork min{任务数，最大进程数} 的进程
-        while (this.currentProcessNum <= this.maxParallelProcess && this.currentProcessNum <= taskTodoNum) {
-          this.addProcess()
-        }
-      } else if (flag > 0 && !taskTodoNum) {
-        // 如果有工作进程正在执行且没有新的任务要执行，那么等待工作进程结束任务
-      } else if (flag > 0 && taskTodoNum) {
-        // 如果有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务
-        const processList = this.processList.values()
-        for (const p of processList) {
-          if (p.state !== 1 || p.state !== 4) {
-            this.reuseProcess(p.id)
-          }
-        }
-      } else if (flag < 0 && taskTodoNum) {
-        // 如果没有工作进程正在执行且有新的任务要执行，如果有空闲进程，那么重用空闲进程执行新任务，如果没有则新启动进程进行执行任务
-        const processList = this.processList.values()
-        for (const p of processList) {
-          if (p.state !== 1 || p.state !== 4) {
-            this.reuseProcess(p.id)
-          }
-        }
-      } else if (flag < 0 && !taskTodoNum) {
-        // 如果没有工作进程正在执行且没有新的任务要执行，关闭进程池，任务完成
-        this.closeProcessPool()
+    let flag = this.hasWorkProcessRunning() // 判断是否有工作进程正在执行或是否是第一次处理任务
+    const taskTodoNum = this.taskParamsTodo.length
+    if (flag === 1 && taskTodoNum) {
+      // 初始阶段，fork min{任务数，最大进程数} 的进程
+      while (this.currentProcessNum < this.maxParallelProcess && this.currentProcessNum < taskTodoNum) {
+        this.addProcess()
       }
-    }, 1)
+    } else if (flag === 2 && !taskTodoNum) {
+      // 有忙碌的工作进程，且任务已下发完
+    } else if (flag === 2 && taskTodoNum) {
+      // 有忙碌的工作进程，但还有任务需下发
+      const processList = this.processList.values()
+      for (const p of processList) {
+        if (p.state !== 1 || p.state !== 4) {
+          this.reuseProcess(p.id)
+        }
+      }
+    } else if (flag === -1 && taskTodoNum) {
+      // 所有工作进程空闲，但还有任务需下发
+      const processList = this.processList.values()
+      for (const p of processList) {
+        if (p.state !== 1 || p.state !== 4) {
+          this.reuseProcess(p.id)
+        }
+      }
+    } else if (flag < 0 && !taskTodoNum) {
+      // 所有进程空闲，且任务已下发完
+      this.closeProcessPool()
+    }
   }
 }
 /**
@@ -122,12 +119,13 @@ ProcessPool.prototype.addProcess = function() {
 ProcessPool.prototype.listenProcessState = function(workProcess, params) {
   workProcess.process.on('message', message => {
     if (message === 'finish') {
-      this.taskParamsDone.push(params)
       workProcess.finishTask()
+      this.count++
     } else if (message === 'failed') {
       this.taskParamsTodo.unshift(params)
       workProcess.unFinishTask()
     }
+    this.run()
   })
 }
 /**
@@ -149,9 +147,10 @@ ProcessPool.prototype.hasWorkProcessRunning = function() {
  */
 ProcessPool.prototype.reuseProcess = function(id) {
   const workProcess = this.processList.get(id)
-  if (this.taskParamsTodo.length && workProcess) {
+  if (this.taskParamsTodo.length && workProcess && workProcess.state !== 1) {
     const taskParam = this.taskParamsTodo.shift()
     workProcess.state = 1 // 设置为忙碌
+    // this.listenProcessState(workProcess, taskParam)
     workProcess.process.send(taskParam)
   }
 }
@@ -180,7 +179,7 @@ ProcessPool.prototype.removeAllProcess = function() {
  */
 ProcessPool.prototype.closeProcessPool = function() {
   this.removeAllProcess()
-  clearInterval(this.monitor)
+  console.log(this.count)
   this.ready = false
   this.processList = null
 }

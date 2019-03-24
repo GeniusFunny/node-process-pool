@@ -1,6 +1,10 @@
-const path = require('path')
+const fs = require('fs')
 async function task(workParam) {
-    console.log(workParam)
+    try {
+      fs.appendFileSync(`${__dirname}/test.txt`, `${workParam[0]}\n`)
+    } catch (e) {
+      console.log(e)
+    }
   }/**
  * 当进程被子进程创建后，立刻执行工作任务
  */
