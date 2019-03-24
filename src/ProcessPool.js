@@ -39,7 +39,6 @@ function ProcessPool({
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
   this.script = script // 任务脚本内容
   this.ready = false // 任务脚本是否构建完成
-  this.count = 0
   try {
     this.buildTaskScript() // 根据模版创建任务脚本
   } catch (e) {
@@ -120,7 +119,6 @@ ProcessPool.prototype.listenProcessState = function(workProcess, params) {
   workProcess.process.on('message', message => {
     if (message === 'finish') {
       workProcess.finishTask()
-      this.count++
     } else if (message === 'failed') {
       this.taskParamsTodo.unshift(params)
       workProcess.unFinishTask()
@@ -150,7 +148,6 @@ ProcessPool.prototype.reuseProcess = function(id) {
   if (this.taskParamsTodo.length && workProcess && workProcess.state !== 1) {
     const taskParam = this.taskParamsTodo.shift()
     workProcess.state = 1 // 设置为忙碌
-    // this.listenProcessState(workProcess, taskParam)
     workProcess.process.send(taskParam)
   }
 }
@@ -179,7 +176,6 @@ ProcessPool.prototype.removeAllProcess = function() {
  */
 ProcessPool.prototype.closeProcessPool = function() {
   this.removeAllProcess()
-  console.log(this.count)
   this.ready = false
   this.processList = null
 }
