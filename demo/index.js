@@ -11,10 +11,10 @@ const processPool = new ProcessPool({
   timeToClose: 60 * 1000, // 单个任务被执行最大时长
   dependency: `const fs = require('fs')`, // 任务脚本依赖
   workDir: __dirname, // 当前目录
-  taskName: 'test', // 任务脚本名称
+  taskName: 'writeNumber.js', // 任务脚本名称
   script: async function task(workParam) {
     try {
-      fs.appendFileSync(`${__dirname}/test.txt`, `${workParam[0]}\n`)
+      fs.appendFileSync(`${__dirname}/numbers.txt`, `${workParam[0]}\n`)
     } catch (e) {
       console.log(e)
     }

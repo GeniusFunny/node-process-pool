@@ -1,7 +1,7 @@
 const fs = require('fs')
 async function task(workParam) {
     try {
-      fs.appendFileSync(`${__dirname}/test.txt`, `${workParam[0]}\n`)
+      fs.appendFileSync(`${__dirname}/numbers.txt`, `${workParam[0]}\n`)
     } catch (e) {
       console.log(e)
     }
