@@ -19,6 +19,7 @@ function ProcessPool({
     workDir ='',
     taskName = Date.now(),
     script = '',}) {
+  this.start = Date.now()    
   try {
     isCorrectType('task', script, 'function')
     isCorrectType('maxParallelProcess', maxParallelProcess, 'number')
@@ -39,6 +40,7 @@ function ProcessPool({
   this.maxParallelProcess = maxParallelProcess // 最大进程并行数
   this.script = script // 任务脚本内容
   this.ready = false // 任务脚本是否构建完成
+  this.count = 0 // 已完成任务数
   try {
     this.buildTaskScript() // 根据模版创建任务脚本
   } catch (e) {
@@ -86,7 +88,7 @@ ProcessPool.prototype.run = function() {
  */
 ProcessPool.prototype.buildTaskScript = function() {
   const taskDir = this.task
-  const templateDir = `${__dirname}/task.js`
+  const templateDir = `${__dirname}/TaskTemplate.js`
   const dependency = `${this.dependency}\n`
   const taskBody = this.script.toString()
   const templateReadStream = fs.createReadStream(templateDir)
@@ -119,6 +121,7 @@ ProcessPool.prototype.listenProcessState = function(workProcess, params) {
   workProcess.process.on('message', message => {
     if (message === 'finish') {
       workProcess.finishTask()
+      this.count++
     } else if (message === 'failed') {
       this.taskParamsTodo.unshift(params)
       workProcess.unFinishTask()
@@ -178,5 +181,26 @@ ProcessPool.prototype.closeProcessPool = function() {
   this.removeAllProcess()
   this.ready = false
   this.processList = null
+  this.deleteTask()
+  this.log()
+}
+/**
+ * 删除任务脚本
+ */
+ProcessPool.prototype.deleteTask = function() {
+  fs.unlink(this.task, err => {
+    if (err) console.log('删除任务脚本失败')
+  })
+}
+ProcessPool.prototype.log = function() {
+  let now = Date.now()
+
+  console.log('任务已完成，具体信息如下：')
+  console.log(`完成${this.count}个子任务，总计耗时${now - this.start}ms`)
+  console.log(`每个子任务平均耗时${(now - this.start) / this.count}ms`)
+
+  console.log('The task has been completed, the specific information is as follows:')
+  console.log(`Completed ${this.count} subtasks, It takes a total of ${now - this.start}ms`)
+  console.log(`Each subtask takes ${(now - this.start) / this.count}ms`)
 }
 module.exports = ProcessPool
