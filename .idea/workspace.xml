@@ -2,16 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56603820-3d5a-48f2-90ea-24adb72468b2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/numbers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/demo/numbers.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/1553666390947.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/1553666390954.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" beforeDir="false" afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" beforeDir="false" afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/PowerfulProcessPool/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PowerfulProcessPool/test.js" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -27,26 +24,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="424">
-              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+            <state relative-caret-position="402">
+              <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
               <folding>
-                <element signature="e#309#327#0" />
+                <element signature="e#762#776#0" />
+                <element signature="e#1219#1344#0" />
                 <element signature="e#787#797#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="38" column="65" lean-forward="true" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-              <folding>
-                <element signature="n#!!block;n#ProcessItem#0" />
-                <element signature="e#526#578#0" />
-                <element signature="e#627#647#0" />
-                <element signature="e#693#807#0" />
+                <element signature="e#1105#1115#0" />
+                <element signature="e#1839#2077#0" />
+                <element signature="e#1616#1643#0" />
               </folding>
             </state>
           </provider>
@@ -55,25 +41,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="25" />
+            <state relative-caret-position="531">
+              <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+              <folding>
+                <element signature="e#257#277#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/util.js">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="36" selection-start-column="36" selection-end-column="36" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+            <state relative-caret-position="4">
+              <caret line="85" column="33" lean-forward="true" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
               <folding>
-                <element signature="e#298#308#0" />
-                <element signature="e#377#390#0" />
                 <element signature="e#479#501#0" />
               </folding>
             </state>
@@ -113,6 +104,9 @@
       <find>console.log</find>
       <find>this.count</find>
       <find>send</find>
+      <find>console</find>
+      <find>进程</find>
+      <find>idle</find>
     </findStrings>
     <replaceStrings>
       <replace>workPara</replace>
@@ -151,9 +145,10 @@
         <option value="$PROJECT_DIR$/src/PowerfulProcessItem.js" />
         <option value="$PROJECT_DIR$/anotherProcessPool/TaskTemplate.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/test.js" />
         <option value="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" />
         <option value="$PROJECT_DIR$/PowerfulProcessPool/index.js" />
-        <option value="$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js" />
         <option value="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" />
       </list>
     </option>
@@ -182,11 +177,6 @@
               <item name="ProcessPool" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProcessPool" type="462c0819:PsiDirectoryNode" />
               <item name="PowerfulProcessPool" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProcessPool" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProcessPool" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -248,12 +238,12 @@
       <workItem from="1553396180812" duration="1819000" />
       <workItem from="1553402530733" duration="6475000" />
       <workItem from="1553479084230" duration="747000" />
-      <workItem from="1553601721251" duration="10125000" />
+      <workItem from="1553601721251" duration="15254000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51934000" />
+    <option name="totallyTimeSpent" value="57063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -360,29 +350,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/util.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="38" column="65" lean-forward="true" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
-          <folding>
-            <element signature="n#!!block;n#ProcessItem#0" />
-            <element signature="e#526#578#0" />
-            <element signature="e#627#647#0" />
-            <element signature="e#693#807#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="448">
@@ -390,25 +357,69 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/1553666390947.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-332" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/test.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="38" column="65" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
+          <folding>
+            <element signature="n#!!block;n#ProcessItem#0" />
+            <element signature="e#526#578#0" />
+            <element signature="e#627#647#0" />
+            <element signature="e#693#807#0" />
+            <element signature="e#873#1038#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/1553666962558.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="36" selection-start-column="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        <state relative-caret-position="4">
+          <caret line="85" column="33" lean-forward="true" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
           <folding>
-            <element signature="e#298#308#0" />
-            <element signature="e#377#390#0" />
             <element signature="e#479#501#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="26" column="31" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+          <folding>
+            <element signature="e#257#277#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+        <state relative-caret-position="402">
+          <caret line="39" column="35" selection-start-line="39" selection-start-column="35" selection-end-line="39" selection-end-column="35" />
           <folding>
-            <element signature="e#309#327#0" />
+            <element signature="e#762#776#0" />
+            <element signature="e#1219#1344#0" />
             <element signature="e#787#797#0" />
+            <element signature="e#1105#1115#0" />
+            <element signature="e#1839#2077#0" />
+            <element signature="e#1616#1643#0" />
           </folding>
         </state>
       </provider>

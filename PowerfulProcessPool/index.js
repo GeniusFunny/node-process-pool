@@ -1,19 +1,32 @@
 const PowerfulProcessPool = require('./PowerfulProcessPool')
 
 const powerfulInstance = new PowerfulProcessPool({
-  maxProcessNum: 10,
+  maxProcessNum: 5,
   workDir: __dirname
 })
-
-powerfulInstance.getConnection().executeTask(`var isCorrectType = require('./util').isCorrectType`, async function task() {
-  let a = '123'
-  try {
-    isCorrectType('a', a, 'number')
-  } catch (e) {
-    console.log(e)
-  }
+let connection = powerfulInstance.getConnection()
+connection.executeTask(``, async function task() {
+  console.log('1-1')
 })
-powerfulInstance.getConnection().executeTask(`var path = require('path')`, async function task() {
-  console.log(Date.now())
+connection.executeTask(``, async function task() {
+  console.log('1-2')
 })
-powerfulInstance.close()
+powerfulInstance.getConnection().executeTask(``, async function task() {
+  console.log(2)
+})
+powerfulInstance.getConnection().executeTask(``, async function task() {
+  console.log(3)
+})
+powerfulInstance.getConnection().executeTask(``, async function task() {
+  console.log(4)
+})
+powerfulInstance.getConnection().executeTask(``, async function task() {
+  console.log(5)
+})
+setTimeout(() => {
+  console.log(powerfulInstance)
+  powerfulInstance.getConnection().executeTask(``, async function task() {
+    console.log(6)
+  })
+  powerfulInstance.close()
+}, 500)
