@@ -14,7 +14,7 @@ const processPool = new ProcessPool({
   taskName: 'writeNumber.js', // 任务脚本名称
   script: async function task(workParam) {
     let start = Date.now()
-    while (Date.now() <= start + 500) {}
+    while (Date.now() <= start + 200) {}
     try {
       fs.appendFileSync(`${__dirname}/numbers.txt`, `${workParam[0]}\n`)
     } catch (e) {
