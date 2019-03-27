@@ -7,12 +7,14 @@ for (let i = 0; i < 1000; i++) {
 }
 // 创建进程池实例
 const processPool = new ProcessPool({
-  maxParallelProcess: 10, // 支持最大进程并行数
+  maxParallelProcess: 50, // 支持最大进程并行数
   timeToClose: 60 * 1000, // 单个任务被执行最大时长
   dependency: `const fs = require('fs')`, // 任务脚本依赖
   workDir: __dirname, // 当前目录
   taskName: 'writeNumber.js', // 任务脚本名称
   script: async function task(workParam) {
+    let start = Date.now()
+    while (Date.now() <= start + 200) {}
     try {
       fs.appendFileSync(`${__dirname}/numbers.txt`, `${workParam[0]}\n`)
     } catch (e) {

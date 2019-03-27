@@ -1,5 +1,7 @@
 const fs = require('fs')
 async function task(workParam) {
+    let start = Date.now()
+    while (Date.now() <= start + 200) {}
     try {
       fs.appendFileSync(`${__dirname}/numbers.txt`, `${workParam[0]}\n`)
     } catch (e) {

@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="56603820-3d5a-48f2-90ea-24adb72468b2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PowerfulProcessPool/util.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/demo/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/numbers.txt" beforeDir="false" afterPath="$PROJECT_DIR$/demo/numbers.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,11 +24,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+            <state relative-caret-position="424">
+              <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+              <folding>
+                <element signature="e#309#327#0" />
+                <element signature="e#787#797#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -27,98 +40,51 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="4" column="17" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+            <state relative-caret-position="224">
+              <caret line="38" column="65" lean-forward="true" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
               <folding>
                 <element signature="n#!!block;n#ProcessItem#0" />
                 <element signature="e#526#578#0" />
                 <element signature="e#627#647#0" />
                 <element signature="e#693#807#0" />
-                <element signature="e#873#1038#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ProcessPool.js">
+        <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-9">
-              <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+            <state relative-caret-position="448">
+              <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/util.js">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
               <folding>
-                <element signature="n#!!doc;n#ProcessPool#0" />
-                <element signature="e#2721#2828#0" />
-                <element signature="e#2878#2895#0" />
-                <element signature="e#2947#3403#0" />
-                <element signature="e#3404#3434#0" />
-                <element signature="e#3481#3796#0" />
-                <element signature="e#3797#3859#0" />
-                <element signature="e#3933#4212#0" />
-                <element signature="e#4213#4263#0" />
-                <element signature="e#4321#4574#0" />
-                <element signature="e#4575#4614#0" />
-                <element signature="e#4896#4926#0" />
-                <element signature="e#5109#5128#0" />
-                <element signature="e#5181#5309#0" />
-                <element signature="e#5310#5326#0" />
+                <element signature="e#298#308#0" />
+                <element signature="e#377#390#0" />
+                <element signature="e#479#501#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/util.js">
+        <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="140">
-                <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/demo/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/demo/numbers.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-27651" />
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/task.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-              <folding>
-                <element signature="n#!!doc;n#firstTask#0" />
-                <element signature="n#!!block;n#firstTask#0" />
-                <element signature="n#!!doc;n#finishTask#0" />
-                <element signature="n#!!block;n#finishTask#0" />
-                <element signature="n#!!doc;n#unFinishTask#0" />
-                <element signature="n#!!block;n#unFinishTask#0" />
-                <element signature="n#!!doc;n#main#0" />
-                <element signature="n#!!block;n#main#0" />
-                <element signature="e#677#756#0" />
-              </folding>
+            <state relative-caret-position="448">
+              <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -146,6 +112,7 @@
       <find>reuseProcess</find>
       <find>console.log</find>
       <find>this.count</find>
+      <find>send</find>
     </findStrings>
     <replaceStrings>
       <replace>workPara</replace>
@@ -176,10 +143,18 @@
         <option value="$PROJECT_DIR$/test/test.js" />
         <option value="$PROJECT_DIR$/test/demo.js" />
         <option value="$PROJECT_DIR$/test/test.txt" />
-        <option value="$PROJECT_DIR$/src/ProcessPool.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/demo/test.txt" />
+        <option value="$PROJECT_DIR$/demo/numbers.txt" />
         <option value="$PROJECT_DIR$/demo/index.js" />
+        <option value="$PROJECT_DIR$/src/ProcessPool.js" />
+        <option value="$PROJECT_DIR$/src/PowerfulProcessPool.js" />
+        <option value="$PROJECT_DIR$/src/PowerfulProcessItem.js" />
+        <option value="$PROJECT_DIR$/anotherProcessPool/TaskTemplate.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/index.js" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js" />
+        <option value="$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js" />
       </list>
     </option>
   </component>
@@ -206,7 +181,12 @@
             <path>
               <item name="ProcessPool" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProcessPool" type="462c0819:PsiDirectoryNode" />
-              <item name="demo" type="462c0819:PsiDirectoryNode" />
+              <item name="PowerfulProcessPool" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ProcessPool" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ProcessPool" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -222,7 +202,11 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.import" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/anotherProcessPool" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/anotherProcessPool" />
       <recent name="$PROJECT_DIR$/test" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/demo" />
@@ -263,16 +247,19 @@
       <workItem from="1553336629180" duration="326000" />
       <workItem from="1553396180812" duration="1819000" />
       <workItem from="1553402530733" duration="6475000" />
+      <workItem from="1553479084230" duration="747000" />
+      <workItem from="1553601721251" duration="10125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41062000" />
+    <option name="totallyTimeSpent" value="51934000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24947146" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24947146" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -285,7 +272,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3283767" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3283767" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -298,36 +285,13 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/task.js" />
     <entry file="file://$PROJECT_DIR$/index.js" />
-    <entry file="file://$PROJECT_DIR$/demo/test.js" />
     <entry file="file://$PROJECT_DIR$/test.js" />
     <entry file="file://$PROJECT_DIR$/src/index.js" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="140">
-            <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="4" column="17" lean-forward="true" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
-          <folding>
-            <element signature="n#!!block;n#ProcessItem#0" />
-            <element signature="e#526#578#0" />
-            <element signature="e#627#647#0" />
-            <element signature="e#693#807#0" />
-            <element signature="e#873#1038#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/test.txt" />
+    <entry file="file://$PROJECT_DIR$/demo/test.js" />
     <entry file="file://$PROJECT_DIR$/src/task.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
+        <state relative-caret-position="19">
           <caret line="23" column="23" lean-forward="true" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding>
             <element signature="n#!!doc;n#firstTask#0" />
@@ -343,60 +307,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/demo/numbers.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="11997" column="5" lean-forward="true" selection-start-line="11997" selection-start-column="5" selection-end-line="11997" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
-          <caret line="10" column="1" lean-forward="true" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="140">
+            <caret line="5" selection-start-line="5" selection-end-line="5" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/demo/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-79">
+          <caret line="4" column="21" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TaskTemplate.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/1553656514346.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" lean-forward="true" selection-start-column="1" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ProcessPool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-9">
-          <caret line="162" column="3" selection-start-line="162" selection-start-column="3" selection-end-line="162" selection-end-column="3" />
+        <state relative-caret-position="-105">
+          <caret line="100" column="4" lean-forward="true" selection-start-line="100" selection-start-column="4" selection-end-line="100" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/util.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProcessItem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="38" column="65" lean-forward="true" selection-start-line="38" selection-start-column="65" selection-end-line="38" selection-end-column="65" />
           <folding>
-            <element signature="n#!!doc;n#ProcessPool#0" />
-            <element signature="e#2721#2828#0" />
-            <element signature="e#2878#2895#0" />
-            <element signature="e#2947#3403#0" />
-            <element signature="e#3404#3434#0" />
-            <element signature="e#3481#3796#0" />
-            <element signature="e#3797#3859#0" />
-            <element signature="e#3933#4212#0" />
-            <element signature="e#4213#4263#0" />
-            <element signature="e#4321#4574#0" />
-            <element signature="e#4575#4614#0" />
-            <element signature="e#4896#4926#0" />
-            <element signature="e#5109#5128#0" />
-            <element signature="e#5181#5309#0" />
-            <element signature="e#5310#5326#0" />
+            <element signature="n#!!block;n#ProcessItem#0" />
+            <element signature="e#526#578#0" />
+            <element signature="e#627#647#0" />
+            <element signature="e#693#807#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        <state relative-caret-position="448">
+          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/test.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/test.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/demo/index.js">
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/TaskTemplate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="448">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/demo/numbers.txt">
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-27651" />
+        <state relative-caret-position="300">
+          <caret line="29" column="20" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+          <folding>
+            <element signature="e#298#308#0" />
+            <element signature="e#377#390#0" />
+            <element signature="e#479#501#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PowerfulProcessPool/PowerfulProcessPool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="47" column="9" selection-start-line="47" selection-start-column="9" selection-end-line="47" selection-end-column="9" />
+          <folding>
+            <element signature="e#309#327#0" />
+            <element signature="e#787#797#0" />
+          </folding>
+        </state>
       </provider>
     </entry>
   </component>

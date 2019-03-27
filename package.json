@@ -5,7 +5,8 @@
   "main": "demo/test.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node demo/index.js"
+    "start": "node demo/index.js",
+    "power": "node PowerfulProcessPool/index.js"
   },
   "repository": {
     "type": "git",
